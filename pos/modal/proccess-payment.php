@@ -25,8 +25,8 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a href="../pos/receipt/" target="_blank">
-              <button type="button" class="btn btn-primary" id="proceed-payment-btn">Proceed Payment</button>
+          <a href="../pos/receipt/?order_id=<?php echo $_SESSION['order_id']; ?>" target="_blank" class="btn btn-primary"  id="proceed-payment-btn">
+              Proceed Payment
           </a>          <!-- Spinner for loading state -->
           <div id="payment-loading-spinner" class="spinner-border text-primary d-none" role="status">
             <span class="visually-hidden">Processing...</span>

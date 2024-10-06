@@ -1,16 +1,7 @@
 body {
     font-family: 'Courier New', Courier, monospace;
-    margin: 0;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    min-height: 100vh; /* Ensure centering in the viewport height */
-}
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding-top: 20px;
-}
+    margin: 0; 
+} 
 table {
     width: 100%;
 }
