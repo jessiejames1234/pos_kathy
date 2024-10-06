@@ -1,0 +1,60 @@
+body {
+    background-image: url('../Image/wallpaper.jpg'); /* Replace with the path to your bread image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333; /* Dark text color */
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* White with some transparency */
+    border-radius: 25px;    
+    box-shadow: 0 8p 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #ffc444;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    font-size: 1.5rem; /* Increased font size */
+    padding: 1.5rem; /* More padding */
+}
+
+.form-label {
+    font-weight: bold;
+    color: black; /* Slightly darker label color */
+}
+
+.form-control {
+    border: 1px solid #ffc444; /* Blue border for inputs */
+    border-radius: 10px;
+}
+
+.form-control:focus {
+    border-color: rgb(255, 217, 0); /* Darker border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.btn-primary {
+    background-color: #ffc444;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+    color: black;
+}
+
+.btn-primary:hover {
+    background-color: rgb(255, 217, 0); /* Darker blue on hover */
+    color: white;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.alert {
+    text-align: center; /* Center the alert message */
+}
