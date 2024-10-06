@@ -89,3 +89,4 @@ if (isset($_SESSION["admin"])) {
                 <div class="header-logo">WELCOME, <?php echo $_SESSION['user_name']; ?></div>
                 <div class="header-logout"><a class="btn btn-outline-danger" href="../../Actions/logout.php" >Logout</a></div>
             </div>
+
