@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Assuming total order amount is already in a hidden input field or dataset
       // Log and check what the initial totalOrderAmountModal value is
      console.log('Total order amount modal value before parsing:', totalOrderAmountModal.value);
-
     let totalOrderAmount = parseFloat(totalOrderAmountModal.value.replace(/[^\d.-]/g, ''));
       // Log the parsed totalOrderAmount to check if it's correct
     console.log('Parsed totalOrderAmount:', totalOrderAmount);
@@ -18,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalOrderAmountModal = document.getElementById('total-order-amount-modal');
         let totalOrderAmount = parseFloat(totalOrderAmountModal.value.replace(/[^\d.-]/g, '')); 
         const paymentAmount = parseFloat(paymentAmountInput.value);
-
         if (!isNaN(paymentAmount) && paymentAmount >= totalOrderAmount) {
             const change = paymentAmount - totalOrderAmount;
             changeAmountInput.value = `₱${change.toFixed(2)}`;
@@ -26,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
             changeAmountInput.value = '₱0.00';
         }
     });
-
     // Handle Proceed Payment button click
     proceedPaymentBtn.addEventListener('click', function() {
         const paymentAmount = parseFloat(paymentAmountInput.value);
