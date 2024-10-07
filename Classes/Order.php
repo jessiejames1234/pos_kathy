@@ -197,7 +197,7 @@ class Order extends Database {
             return false;
         }
     }
-    public function updateProductQuantityInOrder($order_id, $product_id, $new_qty) {
+    public function updateProductQuantityInOrder($order_id, $status, $product_id, $new_qty) {
         // SQL to update the quantity for this product in the specific order
         $query = "UPDATE order_details SET quantity = ? WHERE order_id = ? AND product_id = ?";
         $stmt = $this->conn->prepare($query);

@@ -28,14 +28,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Handle Proceed Payment button click
-    proceedPaymentBtn.addEventListener('click', function() {
+    proceedPaymentBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default anchor behavior
+
         const paymentAmount = parseFloat(paymentAmountInput.value);
-        const totalOrderAmountModal = document.getElementById('total-order-amount-modal');
         let totalOrderAmount = parseFloat(totalOrderAmountModal.value.replace(/[^\d.-]/g, '')); 
         
         if (!isNaN(paymentAmount) && paymentAmount >= totalOrderAmount) {
             spinner.classList.remove('d-none'); // Show spinner
-            document.getElementById('payment-form').submit(); // Submit the form to process payment
+            
+            // Submit the form to process payment
+            document.getElementById('payment-form').submit(); 
         } else {
             alert('Payment amount is less than the total amount.');
         }

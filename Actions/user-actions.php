@@ -42,7 +42,7 @@
                         // Check if the user is an admin
                         if ($row['role'] == 'admin') {
                             $_SESSION['admin'] = true;
-                            header("Location: ../Admin-WEB/product-list/");
+                            header("Location: ../Admin-WEB/dashboard/");
                         } else {
                             $_SESSION['admin'] = false;
                             header("Location: ../pos/");

@@ -9,7 +9,7 @@ $product_list = $product->displayProducts();
 <main class="col-12">
     <div class="table-container container">
         <div class="col text-end mb-3">
-            <a href="#" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#addProductModal">
+            <a href="#" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#stockhistoryModal">
                 <i class="fa-regular fa-flip-vertical fa-1x blue" ></i> Stock History
             </a>
             <a href="#" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#stockProductModal">
@@ -63,7 +63,7 @@ $product_list = $product->displayProducts();
 </div>
 </div>
 <?php include '../modals/add_stock.php'; ?>
-
+<?php include "../modals/stock_history.php"; ?>
 <?php include "../modals/add-product.php"; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
