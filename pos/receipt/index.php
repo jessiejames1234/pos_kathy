@@ -15,7 +15,20 @@ $order = getOrderDetails($conn, $orderID);
 if ($order === null) {
     die("Order not found.");
 }
+$subtotal = 0;
 
+// Fetch the order items
+$itemsResult = getOrderItems($conn, $orderID);
+
+// Initialize total price, paid, and change
+$totalPrice = 0;
+$payment = 0;
+$change = 0;
+
+// Loop through the order items
+
+// Calculate the change
+$change = $payment - $subtotal;
 // Fetch the order items
 $itemsResult = getOrderItems($conn, $orderID);
 
@@ -54,7 +67,7 @@ $subtotal = 0;
                         <tbody>
                             <tr>
                                 <td>Cashier: <span><?php echo $order['first_name'] ; ?></span></td>
-                                <td class="text-end">Order ID: <span><?php echo $order['order_id']; ?></span></td>
+                                <td class="text-end">Order #: <span><?php echo $order['order_id']; ?></span></td>
                             </tr>
                             <tr>
                                 <td>Date: <span><?php echo date("Y-m-d", strtotime($order['date'])); ?></span></td>
@@ -89,11 +102,11 @@ $subtotal = 0;
                             </tr>
                             <tr>
                                 <td colspan="2" class="text-end">Paid</td>
-                                <td class="text-end"><?php echo number_format($order['total'], 2); ?></td>
+                                <td class="text-end"><?php echo number_format($payment, 2); ?></td>
                             </tr>
                             <tr class="total-row">
                                 <td colspan="2" class="text-end">Change</td>
-                                <td class="text-end"><?php echo number_format($order['total'] - $subtotal, 2); ?></td>
+                                <td class="text-end"><?php echo number_format($change, 2); ?></td>
                             </tr>
                         </tbody>
                     </table>

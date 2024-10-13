@@ -5,7 +5,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Require the Order class
-require_once '../Classes/Order.php';
+require_once '../Classes/Order.php'; 
+$product = new Product;
+
 
 // Check if the order ID exists in the session
 if (!isset($_SESSION['order_id'])) {
@@ -30,11 +32,13 @@ try {
     <?php
     // Loop through each item in the order and render it
     foreach ($order_details as $item) {
+       $SelectedProduct = $product->displaySpecificProduct($item['product_id']);
+
         ?>
         <div class="product-list d-flex align-items-center justify-content-between" id="product-<?= $item['product_id'] ?>">
             <!-- Hidden price input for each product -->
             <input type="hidden" name="price" id="hidden_price_<?= $item['product_id'] ?>" value="<?= $item['price'] ?>" />
-
+            <input type="hidden" name="hidden_qty" id="hidden_qty_<?= $item['product_id'] ?>" value="<?= $SelectedProduct['quantity'] ?>" />
             <div class="d-flex align-items-center product-info">
                 <div class="info">
                     <h6><a href="javascript:void(0);"><?= $item['product_name'] ?></a></h6>
@@ -44,7 +48,7 @@ try {
 
             <!-- Quantity controls -->
             <div class="qty-item text-center"> 
-                <input type="number" class="form-control text-center qty-input" name="qty[<?= $item['product_id'] ?>]" value="<?= $item['quantity'] ?>" data-product-id="<?= $item['product_id'] ?>" min="1" />
+                <input type="number" id="qty-<?= $item['product_id'] ?>" class="form-control text-center qty-input" name="qty[<?= $item['product_id'] ?>]" value="<?= $item['quantity'] ?>" data-product-id="<?= $item['product_id'] ?>" min="1" />
             </div>
 
             <div class="d-flex align-items-center action">

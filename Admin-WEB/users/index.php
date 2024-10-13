@@ -35,10 +35,10 @@
                                 <td class="text-center" valign="middle"><?= $user['username'] ?></td>
                                 <td class="text-center" valign="middle"><?= $user['role'] ?></td>
                                 <td class="text-center" valign="middle">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" 
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" class="btn btn-sm btn-warning"
                                     onclick="populateEditModal(<?php echo $user['id']; ?>, '<?php echo htmlspecialchars($user['first_name']); ?>', '<?php echo htmlspecialchars($user['last_name']); ?>', '<?php echo htmlspecialchars($user['username']); ?>', '<?php echo htmlspecialchars($user['role']); ?>');" 
                                     style="text-decoration: none;">
-                                        <i class="fa-solid fa-pen-to-square fa-2x" style="color: #63E6BE;"></i>
+                                        <i class="fa-solid fa-pen-to-square fa-1x"></i>
                                 </a>
                                 </td>
                             </tr>
@@ -47,7 +47,7 @@
                     </table>
                 <?php endif; ?>
             </div>
-
+            </main>                        
     <?php include "../modals/edit_user.php"; ?>
     <?php include "../modals/add-user.php"; ?>
 <script>
@@ -60,5 +60,3 @@ function populateEditModal(id, firstName, lastName, username, role) {
 }
 </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
-    </html>

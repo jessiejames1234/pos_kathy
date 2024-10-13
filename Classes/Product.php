@@ -16,10 +16,10 @@ class Product extends Database {
      *
      * @return void
      */
-    public function addProduct($product_name, $price, $image, $description,$qty) {
-        $sql = "INSERT INTO products (product_name, price, image, description,quantity) VALUES (?, ?, ?, ?,?)";
+    public function addProduct($product_name, $price, $image, $description) {
+        $sql = "INSERT INTO products (product_name, price, image, description) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sdssi", $product_name, $price, $image, $description,$qty);
+        $stmt->bind_param("sdssi", $product_name, $price, $image, $description);
 
         if ($stmt->execute()) {
             header("location: ../Admin-WEB/product-list/");
@@ -82,19 +82,29 @@ class Product extends Database {
             die("Error in retrieving: " . $this->conn->error);
         }
     }
-
     public function deleteProduct($product_id) {
-        $sql = "DELETE FROM products WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i", $product_id);
-
-        if ($stmt->execute()) {
-            header("location: ../Admin-WEB/product-list/");
-            exit;
+        // First delete related rows in stocks_quantity
+        $sql_stocks = "DELETE FROM stocks_quantity WHERE product_id = ?";
+        $stmt_stocks = $this->conn->prepare($sql_stocks);
+        $stmt_stocks->bind_param("i", $product_id);
+        
+        if ($stmt_stocks->execute()) {
+            // Now delete the product from products table
+            $sql_product = "DELETE FROM products WHERE id = ?";
+            $stmt_product = $this->conn->prepare($sql_product);
+            $stmt_product->bind_param("i", $product_id);
+        
+            if ($stmt_product->execute()) {
+                header("location: ../Admin-WEB/product-list/");
+                exit;
+            } else {
+                die("Error in deleting product: " . $stmt_product->error);
+            }
         } else {
-            die("Error in deleting product: " . $stmt->error);
+            die("Error in deleting related stock entries: " . $stmt_stocks->error);
         }
     }
+
     public function getExistingImage($product_id) {
         $sql = "SELECT image FROM products WHERE id = '$product_id'";
         if ($result = $this->conn->query($sql)) {

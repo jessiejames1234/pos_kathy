@@ -34,3 +34,11 @@ Error: Invalid password. | Date: 2024-10-06 07:01:34
 Error: Invalid password. | Date: 2024-10-06 07:01:40
 Error: Invalid password. | Date: 2024-10-06 07:01:51
 Error: Invalid password. | Date: 2024-10-06 07:05:23
+Error: Invalid password. | Date: 2024-10-11 15:15:03
+Error: Invalid password. | Date: 2024-10-11 15:15:09
+Error: Invalid password. | Date: 2024-10-11 15:15:14
+Invalid image format. Allowed formats are: jpg, jpeg, png, gif.
+Column 'quantity' cannot be null
+Error: Invalid password. | Date: 2024-10-12 08:10:23
+Error: Invalid password. | Date: 2024-10-12 08:10:31
+Error: Invalid password. | Date: 2024-10-13 17:15:06

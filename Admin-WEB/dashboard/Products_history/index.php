@@ -1,34 +1,23 @@
 <?php
-include_once '../../../Classes/Connect.php';
+include "../../../Classes/display_product_info.php";
 include "../includes/header.php"; 
-
-
-// Initialize the database connection
-$database = new Database();
-$conn = $database->conn;
-
-// Query to get all products
-$productQuery = "SELECT * FROM products";
-$productResult = $conn->query($productQuery);
-
-// Query to get best-selling products including those with 0 sales
-$bestProductQuery = "SELECT p.product_name, IFNULL(SUM(od.quantity), 0) AS total_sold 
-                      FROM products p 
-                      LEFT JOIN order_details od ON od.product_id = p.id 
-                      GROUP BY p.product_name 
-                      ORDER BY total_sold DESC"; // Remove LIMIT to show all products
-$bestProductResult = $conn->query($bestProductQuery);
-
-// Close the connection
-$conn->close();
 ?>
 
-    <style>
-        .table-out-of-stock {
-            background-color: #f8d7da; /* Light red background */
-            color: #721c24; /* Dark red text */
-        }
-    </style>
+<style> 
+    .table-out-of-stock {
+        background-color: #ff8161;
+        color: #410e13;
+        font-weight: bold;
+        font-size: 15px;
+    }
+    .table-low-of-stock {
+        background-color: #fff673;
+        color: #410e13;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+</style>
 
 
 <div class="container mt-5">
@@ -52,12 +41,13 @@ $conn->close();
                     $status = 'On Stock';
                     if ($row['quantity'] == 0) {
                         $status = 'Out of Stock';
-                    } elseif ($row['quantity'] < 5) { // Assuming less than 5 is low stock
-                        $status = 'Low Stock';
+                    } elseif ($row['quantity'] < 10) { // Assuming less than 10 is low stock
+                        $status = 'Low of Stock';
                     }
 
                     // Apply red background if out of stock
-                    $rowClass = ($status == 'Out of Stock') ? 'table-out-of-stock' : '';
+                    $rowClass = ($status == 'Out of Stock') ? 'table-out-of-stock' : (($status == 'Low of Stock') ? 'table-low-of-stock' : '');
+
                     echo "<tr class='$rowClass'>
                             <td>{$row['product_name']}</td>
                             <td>{$row['quantity']}</td>

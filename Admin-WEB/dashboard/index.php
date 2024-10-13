@@ -7,15 +7,15 @@
     $conn = $database->conn;
     
     // Initialize $dailySalesTotal to prevent the warning
-    $dailySalesTotal = 0;
+    $SalesTotal = 0;
     
-    // Query to get the total sales for today
-    $dailyQuery = "SELECT SUM(total) as daily_total FROM orders WHERE DATE(date) = CURDATE() AND status = 'completed'";
+    // Query to get the total sales for orders
+    $dailyQuery = "SELECT COUNT(*) as daily_total FROM orders WHERE status = 'completed'";
     $result = $conn->query($dailyQuery);
     
     // If a result is found, update $dailySalesTotal
     if ($result && $row = $result->fetch_assoc()) {
-        $dailySalesTotal = $row['daily_total'] ?? 0;
+        $SalesTotal = $row['daily_total'] ?? 0;
     }
 
     $sql = "SELECT COUNT(*) AS total_users FROM users";
@@ -49,15 +49,15 @@
     <div class="row d-flex justify-content-center">
         <!-- Total Sales -->
         <div class="col-md-3 mb-4">
-            <div class="p-4 bg-info text-center box" onclick="window.location.href='Total_sales/total_sales.php'">
+            <div class="p-4 bg-info text-center box" onclick="window.location.href='Total_sales/'">
                 <h3 class="text-dark">Total Sales</h3>
-                <p class="card-text text-dark font-weight-bold" style="font-size: 1.5em;">203 </p>
+                <p class="text-dark font-weight-bold" style="font-size: 1.5em;"><?php echo $SalesTotal; ?></p>
             </div>
         </div>
 
         <!-- Total Cashier -->
         <div class="col-md-3 mb-4">
-            <div class="p-4 bg-success text-center box" onclick="window.location.href='Total_cashier/cashier_details.php'">
+            <div class="p-4 bg-success text-center box" onclick="window.location.href='Total_cashier/'">
                 <h3 class="text-dark">Total Cashier</h3>
                 <p class="text-dark font-weight-bold" style="font-size: 1.5em;"><?php echo $totalUsers; ?></p>
             </div>
@@ -65,8 +65,8 @@
 
         <!-- Products -->
         <div class="col-md-3 mb-4">
-            <div class="p-4 bg-warning text-center box" onclick="window.location.href='Products/display_product_history.php'">
-                <h3 class="text-dark">Products</h3>
+            <div class="p-4 bg-warning text-center box" onclick="window.location.href='Products_history/'">
+                <h3 class="text-dark">Total Products</h3>
                 <p class="text-dark font-weight-bold" style="font-size: 1.5em;"><?php echo $totalProducts; ?></p> <!-- Dynamic product count -->
             </div>
         </div>

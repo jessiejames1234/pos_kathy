@@ -9,14 +9,11 @@ $product_list = $product->displayProducts();
 <main class="col-12">
     <div class="table-container container">
         <div class="col text-end mb-3">
-            <a href="#" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#stockhistoryModal">
-                <i class="fa-regular fa-flip-vertical fa-1x blue" ></i> Stock History
-            </a>
             <a href="#" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#stockProductModal">
-                <i class="fa-regular fa-plus fa-flip-vertical fa-1x white"></i> Add Stock
+                <i class="fa-regular fa-square-plus fa-flip-vertical fa-1x"></i> Add Stock
             </a>
             <a href="#" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                <i class="fa-regular fa-plus fa-flip-vertical fa-1x white"></i> Add New Product
+                <i class="fa-regular fa-square-plus fa-flip-vertical fa-1x"></i> Add New Product
             </a>
         </div>
         <?php if (empty($product_list)): ?>
@@ -32,6 +29,7 @@ $product_list = $product->displayProducts();
                     <th>ID</th>
                     <th>Image</th>
                     <th>Product Name</th>
+                    <th>Description</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Action</th>
@@ -44,17 +42,21 @@ $product_list = $product->displayProducts();
                         <td class="text-center" valign="middle"><img src="../<?= $product['image'] ?>" alt="Product Image"
                                 style="width: 100px; height: 70px;"></td>
                         <td class="text-center" valign="middle"><?= $product['product_name'] ?></td>
+                        <td class="text-center" valign="middle"><?= $product['description'] ?></td>
+
                         <td class="text-center" valign="middle"><?= $product['price'] ?></td>
                         <td class="text-center" valign="middle"><?= $product['quantity'] ?></td>
                         <td class="text-center" valign="middle">
-                            <a href="Edit-product.php?product_id=<?= $product['id'] ?>" class="btn btn-sm btn-warning"
-                                title="Edit Product"><i class="fa-solid fa-pen-to-square fa-1x"></i></a>
+                        <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editProductModal<?= $product['id'] ?>" title="Edit Product">
+                                <i class="fa-solid fa-pen-to-square fa-1x"></i>
+                            </a>
                             <a href="../../Actions/Delete-product.php?product_id=<?= $product['id'] ?>"
                                 class="btn btn-danger btn-sm" title="Delete Product"><i
                                     class="fa-sharp-duotone fa-solid fa-trash-can fa-1x"
                                     style="--fa-primary-color: #871c1f; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1;"></i></a>
                         </td>
                     </tr>
+                    <?php include "../product-list/Edit-product.php"; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
@@ -63,9 +65,7 @@ $product_list = $product->displayProducts();
 </div>
 </div>
 <?php include '../modals/add_stock.php'; ?>
-<?php include "../modals/stock_history.php"; ?>
 <?php include "../modals/add-product.php"; ?>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

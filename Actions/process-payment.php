@@ -59,7 +59,7 @@ try {
                 unset($_SESSION['order_id']);
 
                 // Redirect to success page
-                header("location: ../pos/?success=1");
+                header("location: ../pos/receipt/?order_id=$order_id&success=1");
                 exit;
             } else {
                 throw new Exception("Failed to update order status.");
